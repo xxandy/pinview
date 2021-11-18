@@ -1,0 +1,25 @@
+<html>
+<head>
+  <link rel="stylesheet" href="content-styles.css">
+  <link rel="stylesheet" href="popup-styles.css">
+</head>
+<body style="width: 400px">
+  <div id="pintitle" class="pinheader">
+  <p><img src="icon.png" height="22em" width="22em"/>&nbsp&nbspPinned Tabs </p>
+  </div>
+  <div id="bootstrap" class="pinbody"></div>
+  <div id="nopinwarning" class="warningtext hideguide">
+    <p>No pinned tabs found.<br/>
+       Have you tried pinning a tab? It's an useful feature! <br/>
+       Here's how: right-click on the tab's title and choose <q>Pin</q>.</br>
+       See more details at the
+       <a href="https://support.google.com/chrome/answer/2391819">official documentation</a>.
+    </p>
+  </div>
+  <div id="noconnwarning" class="warningtext hideguide">
+    <p>Unable to connect to extension. Will retry shortly...</p>
+  </div>
+  <script src="popup.js"></script>
+  <script src="common.js"></script>
+</body>
+</html>

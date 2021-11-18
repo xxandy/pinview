@@ -1,0 +1,24 @@
+body::-webkit-scrollbar {
+  width: 11px;
+}
+body::-webkit-scrollbar-track {
+  background: #6060A0;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #404070;
+  border-radius: 6px;
+  border: 3px solid #6060A0;
+}
+body {
+  background-color: #6060A0;
+  scrollbar-width: thin;
+  scrollbar-color: #6060A0 black;
+}
+
+.showguide {
+  display: block;
+}
+
+.hideguide {
+  display: none;
+}
