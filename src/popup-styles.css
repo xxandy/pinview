@@ -22,3 +22,25 @@ body {
 .hideguide {
   display: none;
 }
+
+.showinlineguide {
+  display: inline-block;
+}
+
+.pinheader {
+  width: 100%;
+}
+
+.poputtitle {
+  text-align: left;
+  display: inline-block;
+}
+
+.pwatip {
+  text-align: right;
+  float: right;
+}
+
+.pwalink {
+  target-new: tab;
+}

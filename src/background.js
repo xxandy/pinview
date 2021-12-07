@@ -64,9 +64,14 @@ function removePort(p) {
       break;
     }
   }
+  if( ports.length < 1 ) {
+    // let the popup window know
+    chrome.runtime.sendMessage({popuphint: "pwaleft"});
+  }
 }
 
 function addOneListener(p) {
+  let j = 0;
   ports.push( p );
 
   p.onMessage.addListener(function(msg, sendingPort) {
@@ -86,6 +91,9 @@ function addOneListener(p) {
   if( ports.length > 1 ) {
     return;
   }
+
+  // first connection, so remove tip
+  chrome.runtime.sendMessage({popuphint: "pwaarrived"});
 
   // first one only
   chrome.tabs.onUpdated.addListener( function(tabId, changeInfo, tab) {
@@ -111,6 +119,16 @@ function addOneListener(p) {
   });
 }
 
+function oneshotMessageReceived(msg, sender, sendResponse) {
+  if( msg.popuphint == "syncstatus" ) {
+    if( ports.length > 0 ) {
+      sendResponse({popuphint: "pwaarrived"});
+    } else {
+      sendResponse({popuphint: "pwaleft"});
+    }
+  }
+}
+
 
 
 chrome.runtime.onConnect.addListener(function(p) {
@@ -119,3 +137,6 @@ chrome.runtime.onConnect.addListener(function(p) {
   }
   return true;
 });
+
+// listening to messages from the pop-up
+chrome.runtime.onMessage.addListener(oneshotMessageReceived);

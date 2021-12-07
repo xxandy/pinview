@@ -21,7 +21,36 @@ function clickOnTab( evt ) {
   });
 }
 
+function hidepwatip() {
+  let pwtip = document.getElementById('installpwa');
+  pwtip.classList.remove('showinlineguide');
+  pwtip.classList.add('hideguide');
+}
+
+function showpwatip() {
+  let pwtip = document.getElementById('installpwa');
+  pwtip.classList.remove('hideguide');
+  pwtip.classList.add('showinlineguide');
+}
+
+function messageReceived(msg) {
+  if( msg.popuphint == 'pwaarrived' ) {
+    hidepwatip();
+  } else if( msg.popuphint == 'pwaleft' ) {
+    showpwatip();
+  }
+}
+
 // add all content to a placeholder tag
 document.addEventListener('DOMContentLoaded', function () {
+
+  // keep up with changes on the PWA status
+  chrome.runtime.onMessage.addListener(messageReceived);
+
+  // request an initial update of the PWA status and apply that
+  chrome.runtime.sendMessage({popuphint: "syncstatus"}, function(response) {
+    messageReceived(response);
+  });
+
   buildContent();
 });
