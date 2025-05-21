@@ -99,6 +99,14 @@ function addOneListener(p) {
   chrome.tabs.onUpdated.addListener( function(tabId, changeInfo, tab) {
     if( hasOwnProperty(changeInfo, 'pinned') ) {
       listTabs();
+    } else if( tab.pinned ) {
+      if( hasOwnProperty(changeInfo, 'title') ) {
+        // An already-pinned tab changed its title
+        listTabs();
+      } else if( hasOwnProperty(changeInfo, 'favIconUrl') ) {
+        // An already-pinned tab changed its icon
+        listTabs();
+      }
     }
   });
 
