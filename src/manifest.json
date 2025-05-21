@@ -1,7 +1,7 @@
 {
   "name": "PinView",
   "description": "Fast access to pinned tabs in all open windows",
-  "version": "1.4",
+  "version": "1.5",
   "manifest_version": 3,
   "permissions": [
     "tabs"
